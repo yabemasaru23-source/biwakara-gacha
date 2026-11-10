@@ -556,7 +556,7 @@ details.story p{font-size:14.5px; margin:11px 0 0}
     <p class="sub" id="collText">0 / 8 種</p>
     <div class="progress"><i id="prog" style="width:0%"></i></div>
     <div class="grid" id="grid"></div>
-    <p class="sub" style="margin-top:11px">カードが1種ふえるたびに、坂の町の窓に 灯りが1つ ともります。8つ ぜんぶ ともると、町じゅうが明るくなります。</p>
+    <p class="sub" style="margin-top:11px">1回 まわすたびに、坂の町の窓に 灯りが ひとつ ともります。8回で、町じゅうが明るくなります。</p>
   </section>
 
   <section class="sect">
@@ -587,7 +587,7 @@ details.story p{font-size:14.5px; margin:11px 0 0}
   </section>
 
   <section class="money">
-    <h2>演出のしくみ　長く続くほど 当たりが近い</h2>
+    <h2>場面が長いほど めずらしいカードです</h2>
     <div class="tiers">
       <div class="tier"><i style="background:#B9C6CF"></i><span>ぽっこが心配する</span><span>約10秒</span></div>
       <div class="tier"><i style="background:#4B8DD6"></i><span>あかりが ひとすみを照らす</span><span>約14秒</span></div>
@@ -623,8 +623,8 @@ details.story p{font-size:14.5px; margin:11px 0 0}
     出るのは びわの家族の物語の場面だけです。ご本人やご家族を、当たりはずれの対象にしないためです。
   </div>
   <div class="note" style="border-left-color:var(--flame)">
-    <b>集める仕掛けが 2回目を呼びます。</b>
-    8枚のカードは、第1話の8つの場面です。ぜんぶそろった方に、<b>お名前のポエム</b>をお作りします。
+    <b>8枚のカードは、第1話の8つの場面です。</b>
+   ぜんぶそろった方に、<b>お名前のポエム</b>をお作りします。
   </div>
 
   <p class="foot">みんなのびわから基金　サンプル 2026年11月</p>
@@ -634,7 +634,7 @@ details.story p{font-size:14.5px; margin:11px 0 0}
 (function(){
   var $ = function(id){ return document.getElementById(id); };
   var RANKC = ["#B9C6CF","#4B8DD6","#FFC03A","#B46BFF"];
-  var RANKN = ["ノーマル","レア","スーパーレア","虹"];
+  var RANKN = ["ともしび","あかり","かがやき","にじ"];
 
   /* ===== カード（第1話の8場面） ===== */
   var CARDS = [
@@ -699,9 +699,10 @@ details.story p{font-size:14.5px; margin:11px 0 0}
       d.title = has ? c.nm : "まだ出ていません";
       grid.appendChild(d);
     });
-    $("collText").textContent = n+" / "+CARDS.length+" 種"+(n===CARDS.length?"　町じゅうが ともりました":"");
+    $("collText").textContent = n+" / "+CARDS.length+" 種"+(n===CARDS.length?"　ぜんぶ そろいました":"");
     $("prog").style.width = (n/CARDS.length*100)+"%";
-    for(var w=0;w<8;w++){ var el=$("w"+w); if(el) el.setAttribute("class","win"+(w<n?" lit":"")); }
+    var spins=0; for(var k in own){ spins += (own[k]||0); }
+    for(var w=0;w<8;w++){ var el=$("w"+w); if(el) el.setAttribute("class","win"+(w<spins?" lit":"")); }
   }
 
   /* ===== 石段の絵 ===== */
